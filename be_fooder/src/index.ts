@@ -43,12 +43,16 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
+app.get("/", (req, res) => {
+    return res.json({"status": 200, "message": "Selamat Datang Di Aplikasi Fooder"}).status(200);
+})
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use(`/menu`, MenuRoute)
 app.use(`/user`, UserRoute)
 app.use(`/order`, OrderRoute)
 app.use(`/report`, ReportRoute)
+
 
 // Set public folder as static
 app.use(express.static(path.join(__dirname, '..', 'public')));
